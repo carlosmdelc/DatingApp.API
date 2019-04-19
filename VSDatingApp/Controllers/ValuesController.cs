@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VSDatingApp.Data;
 
 namespace VSDatingApp.Controllers
 {
+    // Everything inside this controller has to be an authorized request.
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class ValuesController : ControllerBase
@@ -30,6 +33,7 @@ namespace VSDatingApp.Controllers
         }
 
         // GET api/values/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         //public ActionResult<string> Get(int id)
         public async Task<IActionResult> GetValue(int id)
